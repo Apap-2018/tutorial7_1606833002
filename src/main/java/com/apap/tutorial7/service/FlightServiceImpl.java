@@ -2,6 +2,7 @@ package com.apap.tutorial7.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class FlightServiceImpl implements FlightService{
 	private FlightDB flightDB;
 	
 	@Override
-	public void addFlight(FlightModel flight) {
-		flightDB.save(flight);
+	public FlightModel addFlight(FlightModel flight) {
+		return flightDB.save(flight);
 	}
 
 	@Override
@@ -37,9 +38,30 @@ public class FlightServiceImpl implements FlightService{
 	}
 
 	@Override
-	public FlightModel getFlightDetailByFlightNumber(String flightNumber) {
-		FlightModel flight = flightDB.findByFlightNumber(flightNumber);
+	public Optional<FlightModel> getFlightDetailByFlightNumber(String flightNumber) {
+		Optional<FlightModel> flight = flightDB.findByFlightNumber(flightNumber);
 		return flight;
+	}
+
+	@Override
+	public Optional<FlightModel> getFlightById(long flightId) {
+		return flightDB.findById(flightId);
+	}
+
+	@Override
+	public void updateFlight(FlightModel flight) {
+		flightDB.save(flight);
+		
+	}
+
+	@Override
+	public List<FlightModel> getAllFlight() {
+		return flightDB.findAll();
+	}
+
+	@Override
+	public void deleteFlight(FlightModel flight) {
+		flightDB.delete(flight);
 	}
 	
 }

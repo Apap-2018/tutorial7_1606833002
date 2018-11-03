@@ -2,6 +2,7 @@ package com.apap.tutorial7.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import com.apap.tutorial7.model.FlightModel;
 
@@ -14,11 +15,19 @@ import com.apap.tutorial7.model.FlightModel;
 public interface FlightService {
 	FlightModel getFlightDetailById (Long id);
 	
-	FlightModel getFlightDetailByFlightNumber (String flightNumber);
+	Optional<FlightModel> getFlightDetailByFlightNumber (String flightNumber);
 	
-	void addFlight(FlightModel flight);
+	FlightModel addFlight(FlightModel flight);
 	
 	void deleteFlightById(Long id);
 	
 	List<FlightModel> getFlightList();
+
+	Optional<FlightModel> getFlightById(long flightId);
+
+	void updateFlight(FlightModel flight);
+
+	List<FlightModel> getAllFlight();
+
+	void deleteFlight(FlightModel flight);
 }

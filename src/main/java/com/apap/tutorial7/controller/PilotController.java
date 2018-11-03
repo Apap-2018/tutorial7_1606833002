@@ -1,14 +1,15 @@
 package com.apap.tutorial7.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.apap.tutorial7.model.PilotModel;
 import com.apap.tutorial7.service.PilotService;
@@ -19,7 +20,8 @@ import com.apap.tutorial7.service.PilotService;
  * @author ivanabdurrahman
  *
  */
-@Controller
+@RestController
+@RequestMapping("/pilot")
 public class PilotController {
 	@Autowired
 	private PilotService pilotService;

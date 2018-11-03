@@ -30,7 +30,7 @@ public class FlightController {
 	@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.GET)
 	private String add(@PathVariable(value = "licenseNumber") String licenseNumber, Model model) {
 		FlightModel flight = new FlightModel();
-		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber).get();
 		ArrayList<FlightModel> pilotFlight = new ArrayList<>();
 		pilotFlight.add(flight);
 		pilot.setPilotFlight(pilotFlight);
@@ -54,7 +54,7 @@ public class FlightController {
 	
 	@RequestMapping(value = "/flight/add/{licenseNumber}", method = RequestMethod.POST, params= {"submit"})
 	private String addFlightSubmit(@ModelAttribute PilotModel pilot) {
-		PilotModel pilotnya = pilotService.getPilotDetailByLicenseNumber(pilot.getLicenseNumber());
+		PilotModel pilotnya = pilotService.getPilotDetailByLicenseNumber(pilot.getLicenseNumber()).get();
 		for (FlightModel flight : pilot.getPilotFlight()) {
 			flight.setPilot(pilotnya);
 			flightService.addFlight(flight);

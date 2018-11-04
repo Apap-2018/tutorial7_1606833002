@@ -46,10 +46,9 @@ public class FlightModel implements Serializable{
 	@Column(name = "date")
 	private Date time;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "pilot_licenseNumber", referencedColumnName = "license_number", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
-	@JsonIgnore
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
+	@JoinColumn(name = "pilot_licenseNumber", referencedColumnName = "license_number")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private PilotModel pilot;
 
 	public long getId() {

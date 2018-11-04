@@ -27,17 +27,11 @@ public class FlightController {
 	@Autowired 
 	FlightService flightService;
 	
-	/**
-	 * POST add flight
-	 */
 	@PostMapping(value = "/add")
 	public FlightModel addFlightSubmit(@RequestBody FlightModel flight) {
 		return flightService.addFlight(flight);
 	}
 	
-	/**
-	 * PUT update flight
-	 */
 	@PutMapping(value = "/update/{flightId}")
 	public String updateFlightSubmit(@PathVariable("flightId") long flightId,
 									 @RequestParam(value = "destination", required=false) String destination,
@@ -57,25 +51,16 @@ public class FlightController {
 		return "flight update success";
 	}
 	
-	/**
-	 * GET flight
-	 */
 	@GetMapping(value = "/view/{flightNumber}")
 	public Optional<FlightModel> viewFlight(@PathVariable("flightNumber") String flightNumber) {
 		return flightService.getFlightDetailByFlightNumber(flightNumber);
 	}
 	
-	/**
-	 * GET all flight 
-	 */
 	@GetMapping(value = "/all")
 	public List<FlightModel> viewAllFlight(){
 		return flightService.getAllFlight();
 	}
 	
-	/**
-	 * Delete flight 
-	 */
 	@DeleteMapping(value = "/{flightId}")
 	public String deleteFlight(@PathVariable("flightId") long flightId) {
 		FlightModel flight = flightService.getFlightById(flightId).get();
